@@ -3,7 +3,7 @@
     <div class="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
       <div class="d-flex align-items-center">
         <div class="avatar-lg me-4">
-          <img src="../../assets/img/team/profile-picture-3.jpg" class="card-img-top rounded-circle border-white"
+          <img src="{{ asset('template/assets/img/team/profile-picture-3.jpg') }}" class="card-img-top rounded-circle border-white"
             alt="Bonnie Green">
         </div>
         <div class="d-block">
@@ -24,11 +24,11 @@
     </div>
     <ul class="nav flex-column pt-3 pt-md-0">
       <li class="nav-item">
-        <a href="../../index.html" class="nav-link d-flex align-items-center">
+        <a href="#" class="nav-link d-flex align-items-center">
           <span class="sidebar-icon">
-            <img src="../../assets/img/brand/light.svg" height="20" width="20" alt="Volt Logo">
+            <img src="{{ asset('template/assets/img/brand/light.svg') }}" height="20" width="20" alt="Volt Logo">
           </span>
-          <span class="mt-1 ms-1 sidebar-text">Volt Overview</span>
+          <span class="mt-1 ms-1 sidebar-text">Logo and Website Name</span>
         </a>
       </li>
 

@@ -26,6 +26,7 @@ class UserController extends Controller
             
             $user = Auth::user();
             if ($user->role == 'Admin') {
+                Session::put('user', $user);
                 return redirect()->route('dashboard');
             }else{
                 return redirect()->route('user')->with('messageDanger','Anda tidak diberikan akses untuk masuk');
