@@ -86,13 +86,17 @@
                     My Profile
                     </a>
                     <div role="separator" class="dropdown-divider my-1"></div>
-                    <form action="{{ route('user.logout') }}" method="post">
+                    <!-- <form action="{{ route('user.logout') }}" method="post">
                         @csrf
                         <button type="submit" class="dropdown-item d-flex align-items-center">
                         <svg class="dropdown-icon text-danger me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>                
                         Logout
                         </button>
-                    </form>
+                    </form> -->
+                    <button type="button" id="logout-button" class="dropdown-item d-flex align-items-center">
+                    <svg class="dropdown-icon text-danger me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>                
+                    Logout
+                    </button>
                 </div>
                 </li>
             </ul>
@@ -174,6 +178,15 @@
 </main>
 <!-- End main content -->
 
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<!-- Jquery Datatable JS -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<!-- Jquery Datatable Boostrap4 JS -->
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+
 <!-- Core -->
 <script src="{{ asset('template/vendor/@popperjs/core/dist/umd/popper.min.js')}}"></script>
 <script src="{{ asset('template/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -198,7 +211,7 @@
 <script src="{{ asset('template/vendor/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
 
 <!-- Moment JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js'"></script>
 
 <!-- Vanilla JS Datepicker -->
 <script src="{{ asset('template/vendor/vanillajs-datepicker/dist/js/datepicker.min.js') }}"></script>
@@ -215,6 +228,30 @@
 <!-- Volt JS -->
 <script src="{{ asset('template/assets/js/volt.js') }}"></script>
 
+<!-- custom script -->
+@stack('custom-script')
+<script>
+    // script for button logout
+    $('#logout-button').click(function() {
+        Swal.fire({
+            title: 'Apakah anda ingin logout?',
+            // text: "",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="{{ route('user.logout') }}";
+            }
+        });
+    });
+
+    // script for datatable default
+    $('.datatable').DataTable();
+</script>
     
 </body>
 

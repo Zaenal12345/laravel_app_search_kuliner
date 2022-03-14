@@ -14,7 +14,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('pages.category');
+        $category = Category::orderBy('id','DESC')->get();
+        $data = [
+            'category' => $category,
+        ];
+
+        return view('pages.category',$data);
     }
 
     /**

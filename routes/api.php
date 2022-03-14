@@ -43,4 +43,5 @@ Route::get('/user', [UserControllerAPI::class, 'index']);
 Route::post('/register_user', [UserControllerAPI::class, 'registerUser']);
 Route::post('/register_store_owner', [UserControllerAPI::class, 'registerStoreOwner']);
 Route::post('/register_admin', [UserControllerAPI::class, 'registerAdmin']);
+Route::get('/verify/{token}', [UserControllerAPI::class, 'verifyUser']);
 

@@ -9,8 +9,11 @@ use Illuminate\Validation\Rules\Password;
 use App\Http\Resources\APIResource;
 use App\Models\User;
 use App\Models\Store;
-use Validator;
+use App\Models\Verify;
 use App\Traits\StoreTrait;
+use App\Mail\verifyMail;
+use Validator;
+use Mail;
 
 class UserController extends Controller
 {
@@ -46,7 +49,16 @@ class UserController extends Controller
         ];
 
         // create user
-        User::create($data);
+        $user = User::create($data);
+
+        // create verify user and send email
+        $verifyUser = Verify::create([
+            'user_id' => $user->id,
+            'token' => sha1(time())
+        ]);
+
+        $user['token'] = $verifyUser->token;
+        Mail::to($user->email)->send(new VerifyMail($user));
 
         //return response
         return new APIResource(true, 'Registration success', []);
@@ -84,6 +96,13 @@ class UserController extends Controller
         // create store from trait
         $this->createStore($request, $user->id);
 
+        // create verify user and send email
+        $verifyUser = Verify::create([
+            'user_id' => $user->id,
+            'token' => sha1(time())
+        ]);
+        \Mail::to($user->email)->send(new VerifyMail($user));
+
 
         return new APIResource(true, 'Registration success', []);
     }
@@ -116,6 +135,35 @@ class UserController extends Controller
 
         //return response
         return new APIResource(true, 'Registration success', []);
+    }
+
+    public function verifyUser($token)
+    {
+        $verifyUser = Verify::where('token', $token)->first();
+
+        if(isset($verifyUser) ){
+            
+            $user = User::find($verifyUser->user_id);
+            if($user->email_verified_at == null && $user) {
+            
+                $user->email_verified_at = date("Y-m-d");
+                $user->save();
+                $message = "Your e-mail is verified. You can now login.";
+                $status = true;
+
+            } else {
+            
+                $message = "Your e-mail is already verified. You can now login.";
+                $status = true;
+
+            }
+
+        } else {
+            $message = "Sorry your email cannot be identified.";
+            $status = false;
+        }
+
+        return new APIResource($status, $message, []);
     }
 
 }

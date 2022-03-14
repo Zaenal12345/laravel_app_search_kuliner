@@ -24,9 +24,9 @@ use App\Http\Controllers\HistoryController as History;
 // route for user (page and login process) 
 Route::get('/', [User::class, 'index'])->name('user');
 Route::post('/login', [User::class, 'login'])->name('user.login');
-Route::post('/logout', [User::class, 'logout'])->name('user.logout');
+Route::get('/logout', [User::class, 'logout'])->name('user.logout');
 
-// Route::middleware(['isAdmin'])->group(function(){
+Route::middleware(['isAdmin','auth'])->group(function(){
     
     // route dashboard
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
@@ -49,4 +49,8 @@ Route::post('/logout', [User::class, 'logout'])->name('user.logout');
     // route history
     Route::get('/history', [History::class, 'index'])->name('history');
 
-// });
+});
+
+Route::get('/verify_email', function(){
+    return view('pages.after_verify');
+});
