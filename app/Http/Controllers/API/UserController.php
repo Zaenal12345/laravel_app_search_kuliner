@@ -95,14 +95,15 @@ class UserController extends Controller
         $user = User::create($data_user);
         // create store from trait
         $this->createStore($request, $user->id);
-
+        
         // create verify user and send email
         $verifyUser = Verify::create([
             'user_id' => $user->id,
             'token' => sha1(time())
         ]);
-        \Mail::to($user->email)->send(new VerifyMail($user));
 
+        $user['token'] = $verifyUser->token;
+        \Mail::to($user->email)->send(new VerifyMail($user));
 
         return new APIResource(true, 'Registration success', []);
     }
@@ -137,33 +138,5 @@ class UserController extends Controller
         return new APIResource(true, 'Registration success', []);
     }
 
-    public function verifyUser($token)
-    {
-        $verifyUser = Verify::where('token', $token)->first();
-
-        if(isset($verifyUser) ){
-            
-            $user = User::find($verifyUser->user_id);
-            if($user->email_verified_at == null && $user) {
-            
-                $user->email_verified_at = date("Y-m-d");
-                $user->save();
-                $message = "Your e-mail is verified. You can now login.";
-                $status = true;
-
-            } else {
-            
-                $message = "Your e-mail is already verified. You can now login.";
-                $status = true;
-
-            }
-
-        } else {
-            $message = "Sorry your email cannot be identified.";
-            $status = false;
-        }
-
-        return new APIResource($status, $message, []);
-    }
-
+    
 }

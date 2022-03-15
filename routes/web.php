@@ -25,6 +25,7 @@ use App\Http\Controllers\HistoryController as History;
 Route::get('/', [User::class, 'index'])->name('user');
 Route::post('/login', [User::class, 'login'])->name('user.login');
 Route::get('/logout', [User::class, 'logout'])->name('user.logout');
+Route::get('/verify/{token}', [User::class, 'verifyUser'])->name('user.after_verify');
 
 Route::middleware(['isAdmin','auth'])->group(function(){
     
@@ -51,6 +52,9 @@ Route::middleware(['isAdmin','auth'])->group(function(){
 
 });
 
-Route::get('/verify_email', function(){
+Route::get('/after_verify_email', function(){
     return view('pages.after_verify');
+});
+Route::get('/verify_email', function(){
+    return view('pages.verify');
 });

@@ -18,33 +18,33 @@
 			<td align="center">
 				<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
 					<tbody><tr>
-						<td align="center" valign="top" background="https://images.pexels.com/photos/1936299/pexels-photo-1936299.jpeg?cs=srgb&dl=artificial-intelligence-codes-developing-1936299.jpg&fm=jpg" bgcolor="#66809b" style="background-size:cover; background-position:top; width: 100%" height="400">
+						<!-- <td align="center" valign="top" background="https://images.pexels.com/photos/1936299/pexels-photo-1936299.jpeg?cs=srgb&dl=artificial-intelligence-codes-developing-1936299.jpg&fm=jpg" bgcolor="#66809b" style="background-size:cover; background-position:top; width: 100%" height="400"> -->
+						<td align="center" valign="top" background="{{ asset('bg_email.jpg') }}" bgcolor="#66809b" style="background-size:cover; background-position:top; width: 100%" height="400">
 							<table width="600" height="400" border="0" align="center" cellpadding="0" cellspacing="0">
 
-								<tbody><tr>
-									<td height="40"></td>
-								</tr>
+								<tbody>
+                                    <tr>
+									    <td height="40"></td>
+								    </tr>
 
+                                    <tr>
+                                        <td align="center" style="line-height: 0px;">
+                                            <img style="display:block; line-height:0px; font-size:0px; border:0px;" src="{{ asset('logo_email.jpg') }}" width="109" height="115" alt="logo">
+                                        </td>
+                                    </tr>
 
-								<tr>
-									<td align="center" style="line-height: 0px;">
-										<img style="display:block; line-height:0px; font-size:0px; border:0px;" src="https://webdevtrick.com/wp-content/uploads/logo-fb-1.png" width="109" height="115" alt="logo">
-									</td>
-								</tr>
+                                    <tr>
+                                        <td align="center" style="font-family: 'Raleway', sans-serif; font-size:33px; color:#ffffff; line-height:24px; font-weight: bold; letter-spacing: 5px;">
+                                            SELAMAT <span style="font-family: 'Raleway', sans-serif; font-size:33px; color:#ffffff; line-height:39px; font-weight: 280; letter-spacing: 5px;">DATANG <br>DI #KulinerKhasKu</span>
+                                        </td>
+                                    </tr>
 
+                                    <tr>
+                                        <td height="50"></td>
+                                    </tr>
 
-
-								<tr>
-									<td align="center" style="font-family: 'Raleway', sans-serif; font-size:33px; color:#ffffff; line-height:24px; font-weight: bold; letter-spacing: 5px;">
-										SELAMAT <span style="font-family: 'Raleway', sans-serif; font-size:33px; color:#ffffff; line-height:39px; font-weight: 280; letter-spacing: 5px;">DATANG <br>DI WEB APP  NAME</span>
-									</td>
-								</tr>
-
-
-								<tr>
-									<td height="50"></td>
-								</tr>
-							</tbody></table>
+							    </tbody>
+                            </table>
 						</td>
 					</tr>
 				</tbody></table>
@@ -80,7 +80,7 @@
                         <tr>
                             <td align="center">
                                 <br>
-                                <table class="button" style="border: 2px solid #fff;" bgcolor="#1F2937" width="30%" border="0" cellpadding="0" cellspacing="0">
+                                <table class="button" style="border: 2px solid #fff;" bgcolor="#33907C" width="30%" border="0" cellpadding="0" cellspacing="0">
                                     <tbody><tr>
                                         <td width="10"></td>
                                         <td height="30" align="center" style="font-family: 'Open Sans', Arial, sans-serif; font-size:13px; color:#ffffff;">

@@ -47,9 +47,37 @@ class UserController extends Controller
         return Redirect('/');
     }
 
-    public function user(Type $var = null)
+    public function user()
     {
         return view('pages.user');
     }
 
+    public function verifyUser($token)
+    {
+        $verifyUser = Verify::where('token', $token)->first();
+
+        if(isset($verifyUser) ){
+            
+            $user = User::find($verifyUser->user_id);
+            if ($user != null) {
+                
+                if ($user->email_verified_at == null) {
+                    
+                    $user->email_verified_at = date("Y-m-d");
+                    $user->save();
+                    $status = true;  
+
+                } 
+                
+            }
+
+        } else {
+            $status = false;
+        }
+
+        $data = ['status' => $status];
+        return view('pages.after_verify',$data);
+    }
+
 }
+
