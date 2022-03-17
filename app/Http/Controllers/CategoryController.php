@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Validator;
 
 class CategoryController extends Controller
 {
@@ -29,7 +30,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('pages.category_create');
+
     }
 
     /**
@@ -40,7 +43,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'category_name' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            # code...
+        }
+
+        $data = [
+            'category_name' => $request->category_name
+        ];
+        Category::create($data);
+
     }
 
     /**
@@ -62,7 +77,12 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        $data = [
+            'category' => $category
+        ];
+
+        return view('pages.category_edit',$data);
     }
 
     /**
