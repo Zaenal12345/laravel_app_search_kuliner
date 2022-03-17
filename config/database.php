@@ -51,7 +51,7 @@ return [
             // 'database' => env('DB_DATABASE', 'forge'),
             // 'username' => env('DB_USERNAME', 'forge'),
             // 'password' => env('DB_PASSWORD', ''),
-            'host' => 'sql303.epizy.com',
+            'host' => 'http://185.27.134.10/',
             'port' => '3306',
             'database' => 'epiz_31312106_kulinerkhasku',
             'username' => 'epiz_31312106',
